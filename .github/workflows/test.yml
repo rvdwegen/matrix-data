@@ -3,7 +3,6 @@ name: Update Last Updated Date
 on:
   pull_request:
     paths:
-      - 'matrix-data/rmm/vendors/*.md'
     types: [opened, synchronize, reopened]
 
 jobs:
