@@ -9,7 +9,7 @@
 - parent: EQT
 - emp_size: Large
 - founded: Not Filled Out
-- headquarters: Singapore/Switzerland/Bulgaria/US
+- headquarters: Singapore/Switzerland/Bulgaria/US/test
 - public_private: Private (PE)
 - acquisition: 2024 by EQT
 
