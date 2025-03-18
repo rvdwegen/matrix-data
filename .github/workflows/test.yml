@@ -1,0 +1,55 @@
+name: Update Last Updated Date
+
+on:
+  pull_request:
+    paths:
+      - 'matrix-data/rmm/vendors/*.md'
+    types: [opened, synchronize, reopened]
+
+jobs:
+  update-date:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Get modified files
+        id: changed-files
+        uses: tj-actions/changed-files@v35
+        with:
+          files: matrix-data/rmm/vendors/*.md
+      
+      - name: Update last_updated_date in modified files
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          # Get current UTC date
+          CURRENT_DATE=$(date -u +"%Y-%m-%d")
+          
+          # Loop through all modified markdown files
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            echo "Processing file: $file"
+            
+            # Check if file exists and is in the correct directory
+            if [[ -f "$file" && "$file" == matrix-data/rmm/vendors/* ]]; then
+              # Replace the last_updated_date line with the current date
+              sed -i 's/- last_updated_date: .*/- last_updated_date: '"$CURRENT_DATE"'/' "$file"
+              echo "Updated last_updated_date in $file to $CURRENT_DATE"
+            fi
+          done
+      
+      - name: Commit changes
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add matrix-data/rmm/vendors/*.md
+          git diff --staged --quiet || git commit -m "Update last_updated_date to current UTC date"
+          git push
