@@ -5,6 +5,7 @@ on:
     paths:
       - 'matrix-data/rmm/vendors/*.md'
     types: [opened, synchronize, reopened]
+  workflow_dispatch:  # Add this line to enable manual triggering
 
 jobs:
   update-date:
