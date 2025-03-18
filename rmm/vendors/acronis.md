@@ -1,7 +1,7 @@
 # Acronis
 ## RMM (Management)
 - id: acronis_rmm
-- website: https://www.acronis.com/en-us/products/cloud/cyber-protect/management
+- website: https://www.acronis.com/en-us/products/cloud/cyber-protect/management/test
 - defaultVisible: true
 - last_updated_date:
 
