@@ -1,7 +1,8 @@
 # Acronis
 This is a comment
 // This is a comment in JS
-console.log("Hello world!");
+
+;console.log("Hello world!");
 
 ## RMM (Management)
 - id: acronis_rmm
