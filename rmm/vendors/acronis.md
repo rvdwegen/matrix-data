@@ -1,14 +1,9 @@
 # Acronis
-This is a comment
-// This is a comment in JS
-
-;console.log("Hello world!");
-
 ## RMM (Management)
 - id: acronis_rmm
 - website: https://www.acronis.com/en-us/products/cloud/cyber-protect/management
 - defaultVisible: true
-- last_updated_date: 2025-03-18 15:17 -4
+- last_updated_date:
 
 ### Features
 - parent: EQT
